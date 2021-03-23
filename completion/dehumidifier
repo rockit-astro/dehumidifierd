@@ -1,0 +1,11 @@
+_dehumidifier()
+{
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    opts="auto manual status"
+    COMPREPLY=($(compgen -W "${opts}" -- ${cur}))
+    return 0
+}
+
+complete -o filenames -F _dehumidifier dehumidifier

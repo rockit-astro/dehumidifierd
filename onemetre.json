@@ -1,0 +1,15 @@
+{
+  "daemon": "onemetre_dehumidifier",
+  "log_name": "dehumidifierd@onemetre",
+  "control_machines": ["OneMetreDome", "OneMetreTCS"],
+  "query_delay": 30,
+  "humidity_daemon": "onemetre_roomalert",
+  "humidity_value_key": "internal_humidity",
+  "humidity_valid_key": "internal_humidity_valid",
+  "power_daemon":  "onemetre_power",
+  "power_switch":  "dehumidifier",
+  "dome_daemon":  "onemetre_dome",
+  "dome_closed_key": "closed",
+  "humidity_enable_limit": 70,
+  "humidity_disable_limit": 65
+}

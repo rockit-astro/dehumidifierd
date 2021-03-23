@@ -1,0 +1,15 @@
+{
+  "daemon": "localhost_test",
+  "log_name": "dehumidifierd",
+  "control_machines": ["LocalHost"],
+  "query_delay": 1,
+  "humidity_daemon": "localhost_test2",
+  "humidity_value_key": "humidity",
+  "humidity_valid_key": "humidity_valid",
+  "power_daemon":  "localhost_test2",
+  "power_switch":  "dehumidifier",
+  "dome_daemon":  "localhost_test2",
+  "dome_closed_key": "closed",
+  "humidity_enable_limit": 70,
+  "humidity_disable_limit": 65
+}

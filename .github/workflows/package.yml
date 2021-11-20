@@ -30,6 +30,7 @@ jobs:
         run: |
           # Set the spec Revision field to <latest in repo> + 1
           centos-packages/set-spec-release.sh onemetre-dehumidifier-server.spec
+          centos-packages/set-spec-release.sh clasp-dehumidifier-server.spec
           centos-packages/set-spec-release.sh observatory-dehumidifier-client.spec
           centos-packages/set-spec-release.sh python3-warwick-observatory-dehumidifier.spec
       - name: Package RPMs

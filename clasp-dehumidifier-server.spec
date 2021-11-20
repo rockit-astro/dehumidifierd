@@ -1,8 +1,8 @@
-Name:      onemetre-dehumidifier-server
-Version:   20210329
+Name:      clasp-dehumidifier-server
+Version:   20211120
 Release:   0
 Url:       https://github.com/warwick-one-metre/dehumidifierd
-Summary:   Dehumidifier server for the Warwick One Metre telescope.
+Summary:   Dehumidifier server for the CLASP telescope.
 License:   GPL-3.0
 Group:     Unspecified
 BuildArch: noarch
@@ -21,13 +21,13 @@ mkdir -p %{buildroot}%{_sysconfdir}/dehumidifierd/
 
 %{__install} %{_sourcedir}/dehumidifierd %{buildroot}%{_bindir}
 %{__install} %{_sourcedir}/dehumidifierd@.service %{buildroot}%{_unitdir}
-%{__install} %{_sourcedir}/onemetre.json %{buildroot}%{_sysconfdir}/dehumidifierd/
+%{__install} %{_sourcedir}/clasp.json %{buildroot}%{_sysconfdir}/dehumidifierd/
 
 %files
 %defattr(0755,root,root,-)
 %{_bindir}/dehumidifierd
 %defattr(0644,root,root,-)
 %{_unitdir}/dehumidifierd@.service
-%{_sysconfdir}/dehumidifierd/onemetre.json
+%{_sysconfdir}/dehumidifierd/clasp.json
 
 %changelog

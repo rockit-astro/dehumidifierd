@@ -6,6 +6,7 @@ RPMBUILD = rpmbuild --define "_topdir %(pwd)/build" \
 
 all:
 	mkdir -p build
+	${RPMBUILD} -ba clasp-dehumidifier-server.spec
 	${RPMBUILD} -ba onemetre-dehumidifier-server.spec
 	${RPMBUILD} -ba observatory-dehumidifier-client.spec
 	${RPMBUILD} -ba python3-warwick-observatory-dehumidifier.spec

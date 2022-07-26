@@ -1,18 +1,14 @@
 Name:      clasp-dehumidifier-server
-Version:   20211120
+Version:   20220726
 Release:   0
 Url:       https://github.com/warwick-one-metre/dehumidifierd
 Summary:   Dehumidifier server for the CLASP telescope.
 License:   GPL-3.0
 Group:     Unspecified
 BuildArch: noarch
-Requires:  python3, python3-Pyro4, python3-warwick-observatory-common, python3-warwick-observatory-dehumidifier
-Requires:  observatory-log-client, %{?systemd_requires}
+Requires:  python3 python3-Pyro4 python3-warwick-observatory-common python3-warwick-observatory-dehumidifier
 
 %description
-Part of the observatory software for the Warwick La Palma telescopes.
-
-`dehumidifierd` controls power to a dehumidifier according to the current conditions and dome status.
 
 %build
 mkdir -p %{buildroot}%{_bindir}

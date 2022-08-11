@@ -26,6 +26,7 @@ import Pyro4
 from warwick.observatory.common.helpers import pyro_client_matches
 from warwick.observatory.common import log
 from warwick.observatory.dehumidifier import Config, CommandStatus, DehumidifierMode, DehumidifierState
+from warwick.observatory.power import SwitchStatus
 
 
 class DehumidifierDaemon:
@@ -111,10 +112,11 @@ class DehumidifierDaemon:
                     try:
                         success = True
                         with self._config.power_daemon.connect() as power:
-                            current_enabled = power.value(self._config.power_switch)
+                            current_value = power.value(self._config.power_switch)
+                            current_enabled = current_value == SwitchStatus.On
                             next_enabled = next_state == DehumidifierState.Enabled
 
-                            if next_enabled != current_enabled:
+                            if next_enabled != current_enabled and current_value != SwitchStatus.Unknown:
                                 label = 'on' if next_enabled else 'off'
                                 success = power.switch(self._config.power_switch, next_enabled)
                                 if success:

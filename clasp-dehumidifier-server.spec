@@ -1,5 +1,5 @@
 Name:      clasp-dehumidifier-server
-Version:   20220726
+Version:   20220811
 Release:   0
 Url:       https://github.com/warwick-one-metre/dehumidifierd
 Summary:   Dehumidifier server for the CLASP telescope.

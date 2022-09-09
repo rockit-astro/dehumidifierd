@@ -3,7 +3,7 @@
   "log_name": "dehumidifierd@clasp",
   "control_machines": ["CLASPTCS"],
   "query_delay": 30,
-  "humidity_daemon": "clasp_roomalert",
+  "humidity_daemon": "clasp_domealert",
   "humidity_value_key": "internal_humidity",
   "power_daemon":  "clasp_power",
   "power_switch":  "dehumidifier",

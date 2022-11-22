@@ -37,21 +37,22 @@ A configuration file is specified when launching the dehumidifier server, and th
 
 The automated packaging scripts will push 4 RPM packages to the observatory package repository:
 
-| Package           | Description |
-| ----------------- | ------ |
-| clasp-dehumidifier-server | Contains the `dehumidifier` server, systemd service file, and configuration for the CLASP dome. |
-| onemetre-dehumidifier-server | Contains the `dehumidifier` server, systemd service file, and configuration for the W1m dome. |
-| observatory-dehumidifier-client | Contains the `dome` commandline utility for controlling the dehumidifier server. |
-| python3-warwick-observatory-dehumidifier | Contains the python module with shared code. |
+| Package                                  | Description                                                                                         |
+|------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| clasp-dehumidifier-server                | Contains the `dehumidifier` server, systemd service file, and configuration for the CLASP dome.     |
+| onemetre-dehumidifier-server             | Contains the `dehumidifier` server, systemd service file, and configuration for the W1m dome.       |
+| observatory-dehumidifier-client          | Contains the `dome` commandline utility for controlling the dehumidifier server.                    |
+| python3-warwick-observatory-dehumidifier | Contains the python module with shared code.                                                        |
+| superwasp-dehumidifier-server            | Contains the `dehumidifier` server, systemd service file, and configuration for the SuperWASP dome. |
 
 `onemetre-dehumidifier-server` and `observatory-dehumidifier-client` should be installed on the `onemetre-dome` machine.
 `clasp-dehumidifier-server` and `observatory-dehumidifier-client` should be installed on the `clasp-tcs` machine.
+`superwasp-dehumidifier-server` and `observatory-dehumidifier-client` should be installed on the `swasp-tcs` machine.
 
 After installing packages, the systemd service should be enabled:
 
 ```
-sudo systemctl enable dehumidifierd@<config>
-sudo systemctl start dehumidifierd@<config>
+sudo systemctl enable --now dehumidifierd@<config>
 ```
 
 where `config` is the name of the json file for the appropriate dome.
@@ -74,8 +75,7 @@ sudo yum update
 
 The daemon should then be restarted to use the newly installed code:
 ```
-sudo systemctl stop dehumidifierd@<config>
-sudo systemctl start dehumidifierd@<config>
+sudo systemctl restart dehumidifierd@<config>
 ```
 
 ### Testing Locally

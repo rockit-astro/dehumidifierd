@@ -36,6 +36,7 @@ jobs:
           rocky-packages/set-spec-release.sh clasp-dehumidifier-server.spec
           rocky-packages/set-spec-release.sh observatory-dehumidifier-client.spec
           rocky-packages/set-spec-release.sh python3-warwick-observatory-dehumidifier.spec
+          rocky-packages/set-spec-release.sh superwasp-dehumidifier-server.spec
       - name: Package RPMs
         run:
           make

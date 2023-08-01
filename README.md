@@ -1,13 +1,8 @@
 ## Dehumidifier control daemon 
-Part of the observatory software for the Warwick La Palma telescopes.
 
-`dehumidifierd` controls power to a dehumidifier (via [powerd](https://github.com/warwick-one-metre/powerd)) according to the current conditions and dome status.
+`dehumidifierd` controls power to a dehumidifier (via [powerd](https://github.com/rockit-astro/powerd)) according to the current conditions and dome status.
 
 `dehumidifier` is a commandline utility that controls the dehumidifier daemon.
-
-`python3-warwick-observatory-dehumidifer` is a python module with the common dehumidifier code.
-
-See [Software Infrastructure](https://github.com/warwick-one-metre/docs/wiki/Software-Infrastructure) for an overview of the software architecture and instructions for developing and deploying the code.
 
 
 ### Configuration
@@ -17,9 +12,9 @@ A configuration file is specified when launching the dehumidifier server, and th
 
 ```python
 {
-  "daemon": "onemetre_dehumidifier", # Run the server as this daemon. Daemon types are registered in `warwick.observatory.common.daemons`.
+  "daemon": "onemetre_dehumidifier", # Run the server as this daemon. Daemon types are registered in `rockit.common.daemons`.
   "log_name": "dehumidifierd@onemetre", # The name to use when writing messages to the observatory log.
-  "control_machines": ["OneMetreDome", "OneMetreTCS"], # Machine names that are allowed to control (rather than just query) state. Machine names are registered in `warwick.observatory.common.IP`.
+  "control_machines": ["OneMetreDome", "OneMetreTCS"], # Machine names that are allowed to control (rather than just query) state. Machine names are registered in `rockit.common.IP`.
   "query_delay": 30, # Humidity query interval in seconds.
   "humidity_daemon": "onemetre_roomalert", # Daemon to query the internal humidity from.
   "humidity_value_key": "internal_humidity", # Key in the daemon's last_measurement dictionary.
@@ -37,17 +32,14 @@ A configuration file is specified when launching the dehumidifier server, and th
 
 The automated packaging scripts will push 4 RPM packages to the observatory package repository:
 
-| Package                                  | Description                                                                                         |
-|------------------------------------------|-----------------------------------------------------------------------------------------------------|
-| clasp-dehumidifier-server                | Contains the `dehumidifier` server, systemd service file, and configuration for the CLASP dome.     |
-| onemetre-dehumidifier-server             | Contains the `dehumidifier` server, systemd service file, and configuration for the W1m dome.       |
-| observatory-dehumidifier-client          | Contains the `dome` commandline utility for controlling the dehumidifier server.                    |
-| python3-warwick-observatory-dehumidifier | Contains the python module with shared code.                                                        |
-| superwasp-dehumidifier-server            | Contains the `dehumidifier` server, systemd service file, and configuration for the SuperWASP dome. |
-
-`onemetre-dehumidifier-server` and `observatory-dehumidifier-client` should be installed on the `onemetre-dome` machine.
-`clasp-dehumidifier-server` and `observatory-dehumidifier-client` should be installed on the `clasp-tcs` machine.
-`superwasp-dehumidifier-server` and `observatory-dehumidifier-client` should be installed on the `swasp-tcs` machine.
+| Package                                  | Description                                                                              |
+|------------------------------------------|------------------------------------------------------------------------------------------|
+| rockit-dehumidifier-server               | Contains the `dehumidifierd` server and systemd service file.                            |
+| observatory-dehumidifier-client          | Contains the `dehumidifier` commandline utility for controlling the dehumidifier server. |
+| python3-warwick-observatory-dehumidifier | Contains the python module with shared code.                                             |
+| rockit-dehumidifier-data-clasp           | Contains the json configuration for the CLASP telescope.                                 |
+| rockit-dehumidifier-data-onemetre        | Contains the json configuration for the W1m telescope.                                   |
+| rockit-dehumidifier-data-superwasp       | Contains the json configuration for the SuperWASP telescope.                             |
 
 After installing packages, the systemd service should be enabled:
 
@@ -62,7 +54,7 @@ Now open a port in the firewall:
 sudo firewall-cmd --zone=public --add-port=<port>/tcp --permanent
 sudo firewall-cmd --reload
 ```
-where `port` is the port defined in `warwick.observatory.common.daemons` for the daemon specified in the config.
+where `port` is the port defined in `rockit.common.daemons` for the daemon specified in the config.
 
 ### Upgrading Installation
 
@@ -82,6 +74,6 @@ sudo systemctl restart dehumidifierd@<config>
 
 The dome server and client can be run directly from a git clone:
 ```
-./dehumidifierd onemetre.json
-DEHUMIDIFIERD_CONFIG_PATH=./onemetre.json ./dehumidifier status
+./dehumidifierd config/onemetre.json
+DEHUMIDIFIERD_CONFIG_PATH=./config/onemetre.json ./dehumidifier status
 ```

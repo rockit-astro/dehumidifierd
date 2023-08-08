@@ -27,7 +27,7 @@ mkdir -p %{buildroot}%{_sysconfdir}/dehumidifierd/
 %package server
 Summary:  Dehumidifier server
 Group:    Unspecified
-Requires: python3-rockit-dehumidifier ptyhon3-rockit-power
+Requires: python3-rockit-dehumidifier python3-rockit-power
 
 %description server
 

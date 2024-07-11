@@ -1,7 +1,7 @@
 {
   "daemon": "onemetre_dehumidifier",
   "log_name": "dehumidifierd@onemetre",
-  "control_machines": ["OneMetreDome", "OneMetreTCS"],
+  "control_machines": ["OneMetreDome", "OneMetreTCS", "OneMetreDAS"],
   "query_delay": 30,
   "humidity_daemon": "onemetre_domealert",
   "humidity_value_key": "internal_humidity",

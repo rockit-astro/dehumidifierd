@@ -1,0 +1,14 @@
+{
+  "daemon": "sting_dehumidifier",
+  "log_name": "dehumidifierd@sting",
+  "control_machines": ["STINGTCS"],
+  "query_delay": 30,
+  "humidity_daemon": "clasp_domealert",
+  "humidity_value_key": "sting_humidity",
+  "power_daemon":  "sting_power",
+  "power_switch":  "dehumidifier",
+  "dome_daemon":  "sting_dome",
+  "dome_closed_key": "closed",
+  "humidity_enable_limit": 70,
+  "humidity_disable_limit": 65
+}

@@ -22,7 +22,7 @@ mkdir -p %{buildroot}%{_sysconfdir}/dehumidifierd/
 
 %{__install} %{_sourcedir}/config/clasp.json %{buildroot}%{_sysconfdir}/dehumidifierd
 %{__install} %{_sourcedir}/config/onemetre.json %{buildroot}%{_sysconfdir}/dehumidifierd
-%{__install} %{_sourcedir}/config/superwasp.json %{buildroot}%{_sysconfdir}/dehumidifierd
+%{__install} %{_sourcedir}/config/sting.json %{buildroot}%{_sysconfdir}/dehumidifierd
 
 %package server
 Summary:  Dehumidifier server
@@ -67,13 +67,13 @@ Group:   Unspecified
 %defattr(0644,root,root,-)
 %{_sysconfdir}/dehumidifierd/onemetre.json
 
-%package data-superwasp
-Summary: Dehumidifier configuration for the SuperWASP telescope.
+%package data-sting
+Summary: Dehumidifier configuration for the STING telescope.
 Group:   Unspecified
-%description data-superwasp
+%description data-sting
 
-%files data-superwasp
+%files data-sting
 %defattr(0644,root,root,-)
-%{_sysconfdir}/dehumidifierd/superwasp.json
+%{_sysconfdir}/dehumidifierd/sting.json
 
 %changelog

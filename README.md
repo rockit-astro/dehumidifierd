@@ -39,7 +39,7 @@ The automated packaging scripts will push 4 RPM packages to the observatory pack
 | python3-warwick-observatory-dehumidifier | Contains the python module with shared code.                                             |
 | rockit-dehumidifier-data-clasp           | Contains the json configuration for the CLASP telescope.                                 |
 | rockit-dehumidifier-data-onemetre        | Contains the json configuration for the W1m telescope.                                   |
-| rockit-dehumidifier-data-superwasp       | Contains the json configuration for the SuperWASP telescope.                             |
+| rockit-dehumidifier-data-sting           | Contains the json configuration for the STING telescope.                                 |
 
 After installing packages, the systemd service should be enabled:
 

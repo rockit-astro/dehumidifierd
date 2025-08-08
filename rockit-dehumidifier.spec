@@ -1,6 +1,6 @@
 Name:      rockit-dehumidifier
 Version:   %{_version}
-Release:   1
+Release:   1%{dist}
 Summary:   Dehumidifier control
 Url:       https://github.com/rockit-astro/dehumidifierd
 License:   GPL-3.0

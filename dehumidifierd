@@ -36,7 +36,7 @@ class DehumidifierDaemon:
         self._delay_condition = threading.Condition()
         self._current_lock = threading.Lock()
 
-        self._current_date = datetime.datetime.utcnow()
+        self._current_date = datetime.datetime.now(datetime.timezone.utc)
         self._current_mode = DehumidifierMode.Automatic
         self._current_state = DehumidifierState.Disabled
 
@@ -101,7 +101,7 @@ class DehumidifierDaemon:
         """Background thread that polls shared memory for the current telescope status"""
         while True:
             with self._delay_condition:
-                next_date = datetime.datetime.utcnow()
+                next_date = datetime.datetime.now(datetime.timezone.utc)
                 next_mode = self._current_mode
                 if self._request_mode != self._current_mode:
                     next_mode = self._request_mode

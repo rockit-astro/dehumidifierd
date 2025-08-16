@@ -16,8 +16,6 @@
 
 """Constants and status codes used by dehumidifierd"""
 
-from rockit.common import TFmt
-
 
 class CommandStatus:
     """Numeric return codes"""
@@ -53,9 +51,9 @@ class DehumidifierMode:
         1: 'AUTOMATIC'
     }
 
-    _formats = {
-        0: TFmt.Yellow + TFmt.Bold,
-        1: TFmt.Green + TFmt.Bold
+    _colors = {
+        0: 'yellow',
+        1: 'green'
     }
 
     @classmethod
@@ -65,9 +63,9 @@ class DehumidifierMode:
         Set formatting=true to enable terminal formatting characters
         """
         if formatting:
-            if status in cls._formats and status in cls._formats:
-                return cls._formats[status] + cls._labels[status] + TFmt.Clear
-            return TFmt.Red + TFmt.Bold + 'UNKNOWN' + TFmt.Clear
+            if status in cls._labels and status in cls._colors:
+                return f'[b][{cls._colors[status]}]{cls._labels[status]}[/{cls._colors[status]}][/b]'
+            return '[b][red]UNKNOWN[/red][/b]'
 
         if status in cls._labels:
             return cls._labels[status]
@@ -86,12 +84,12 @@ class DehumidifierState:
         4: 'POW. ERROR',
     }
 
-    _formats = {
-        0: TFmt.Bold,
-        1: TFmt.Red + TFmt.Bold,
-        2: TFmt.Bold,
-        3: TFmt.Red + TFmt.Bold,
-        4: TFmt.Red + TFmt.Bold
+    _colors = {
+        0: 'default',
+        1: 'red',
+        2: 'default',
+        3: 'red',
+        4: 'red'
     }
 
     @classmethod
@@ -101,9 +99,9 @@ class DehumidifierState:
         Set formatting=true to enable terminal formatting characters
         """
         if formatting:
-            if status in cls._formats and status in cls._formats:
-                return cls._formats[status] + cls._labels[status] + TFmt.Clear
-            return TFmt.Red + TFmt.Bold + 'UNKNOWN' + TFmt.Clear
+            if status in cls._labels and status in cls._colors:
+                return f'[b][{cls._colors[status]}]{cls._labels[status]}[/{cls._colors[status]}][/b]'
+            return '[b][red]UNKNOWN[/red][/b]'
 
         if status in cls._labels:
             return cls._labels[status]

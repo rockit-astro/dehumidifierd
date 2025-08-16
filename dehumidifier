@@ -17,13 +17,12 @@
 
 """Commandline client for managing the dehumidifier"""
 
-import datetime
 import glob
 import os
 import sys
 import Pyro4
 from rockit.dehumidifier import Config, CommandStatus, DehumidifierMode, DehumidifierState
-from rockit.common import TFmt
+from rockit.common import print
 
 SCRIPT_NAME = os.path.basename(sys.argv[0])
 
@@ -58,27 +57,26 @@ def run_command(command, args):
 
 def auto(config, _):
     """Set the dehumidifier to automatic control"""
-    with config.daemon.connect(timeout=0) as dehumidifierd:
-        return dehumidifierd.set_mode(DehumidifierMode.Automatic)
+    with config.daemon.connect(timeout=0) as daemon:
+        return daemon.set_mode(DehumidifierMode.Automatic)
 
 
 def manual(config, _):
     """Set the dehumidifier to manual control"""
-    with config.daemon.connect(timeout=0) as dehumidifierd:
-        return dehumidifierd.set_mode(DehumidifierMode.Manual)
+    with config.daemon.connect(timeout=0) as daemon:
+        return daemon.set_mode(DehumidifierMode.Manual)
 
 
 def status(config, _):
     """Reports the current dehumidifier status"""
-    with config.daemon.connect(timeout=0) as dehumidifierd:
-        latest = dehumidifierd.status()
+    with config.daemon.connect(timeout=0) as daemon:
+        latest = daemon.status()
 
     if latest is None:
         print('error: no data available')
         return 1
 
-    date = datetime.datetime.strptime(latest['date'], '%Y-%m-%dT%H:%M:%SZ')
-    print('Data received ' + TFmt.Bold + str(date) + TFmt.Clear + ':')
+    print(f'Data received [b]{latest["date"]}:')
     print('   Mode: ' + DehumidifierMode.label(latest['mode'], True))
     if latest['mode'] == DehumidifierMode.Automatic:
         print('  State: ' + DehumidifierState.label(latest['state'], True))
@@ -88,7 +86,7 @@ def status(config, _):
 
 def print_usage():
     """Prints the utility help"""
-    print('usage: {} <command>'.format(SCRIPT_NAME))
+    print(f'usage: {SCRIPT_NAME} <command>')
     print()
     print('   auto      dehumidifier is automatically controlled')
     print('   manual    dehumidifier is manually controlled using power commands')
